@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 const { Snowflake } = require("@theinternetfolks/snowflake");
+const authenticationMiddleware = require("../../authenticationMiddleware");
 
 dotenv.config();
 
@@ -49,6 +50,8 @@ router.post('/signup', async (req, res) => {
     }
 })
 
+
+//endpoint for signin
 router.get('/signin', async (req, res) => {
     try {
 
@@ -81,5 +84,20 @@ router.get('/signin', async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 })
+
+//endpoint for getme
+router.get('/getme', authenticationMiddleware, async(req,res)=>{
+
+    const authUser = req.user;
+    console.log(authUser);
+
+    res.status(200).json({
+        email: authUser.userEmail,
+        name: authUser.userName,
+        ID: authUser.userId
+    })
+
+})
+
 
 module.exports = router;

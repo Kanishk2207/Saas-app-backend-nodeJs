@@ -69,25 +69,21 @@ router.delete('/delete', authMiddleware, async (req, res)=>{
         const { memberId } = req.body;
         const member = Member.findOne({memberId: memberId});
 
-
         const community = member.community;
         const authUser = req.user.userId;
-        adminRole = '7118363940010907780'
-        const isAdmin = await Member.exists({community, authUser , adminRole })
+        const adminRole = await Role.findOne({roleName: 'commmunity admin'});
+        const adminRoleId = adminRole.roleId;
+        const isAdmin = await Member.exists({community, authUser , adminRoleId });
         if(!isAdmin){
-            return res.status(400).json({error: 'only admins can remove members'})
+            return res.status(400).json({error: 'only admins can remove members'});
         }
-
 
         await Member.findOneAndDelete({memberId: memberId});
 
         res.status(200).json('user deleted successfully');
 
-
-
-
     } catch (error) {
-        
+        res.status(400).json({error: 'internal server error'});
     }
 })
 

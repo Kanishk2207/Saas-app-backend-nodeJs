@@ -38,5 +38,17 @@ router.post('/create', async (req,res)=>{
     }
 })
 
+router.get('/getall', async (req,res)=>{
+
+    try {
+        
+        const allRoles = await Role.find();
+    
+        res.status(200).json(allRoles);
+    } catch (error) {
+        res.status(400).json({error: 'internal server error'})
+    }
+})
+
 
 module.exports = router;
