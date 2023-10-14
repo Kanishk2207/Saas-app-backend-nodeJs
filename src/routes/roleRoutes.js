@@ -3,9 +3,9 @@ const { Snowflake } = require('@theinternetfolks/snowflake');
 const Role = require('../models/roles');
 const roleController = require('../controllers/roleController');
 
-router.post('/create', roleController.createRole);
+router.post('/role', roleController.createRole);
 
-router.get('/getall', roleController.getAllFunc);
+router.get('/role', roleController.getAllFunc);
 
 
 module.exports = router;

@@ -18,10 +18,10 @@ const PORT = process.env.PORT || 5001;
 app.use(express.json());
 
 
-app.use('/api/users', userRoute);
-app.use('/api/roles', roleRoute);
-app.use('/api/community', communityRoute);
-app.use('/api/member', memberRoute);
+app.use('/v1/auth', userRoute);
+app.use('/v1/roles', roleRoute);
+app.use('/v1/community', communityRoute);
+app.use('/v1/member', memberRoute);
 
 
 app.listen(PORT, () => {

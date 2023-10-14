@@ -8,20 +8,20 @@ const authMiddleware = require("../../authenticationMiddleware");
 const jwsSigninToken = require("../routes/userRoutes");
 const communityController = require('../controllers/communityController');
 //create a community
-router.post('/create', authMiddleware, communityController.createCommunity);
+router.post('/community', authMiddleware, communityController.createCommunity);
 
 
 //get all communities
-router.get('/getall', communityController.getAll);
+router.get('/community', communityController.getAll);
 
 //get all members
-router.get('/allmembers', communityController.getAllMembers);
+router.get('/community/:id/members', communityController.getAllMembers);
 
 //get my owned communities
-router.get('/myOwned', authMiddleware, communityController.getMyOwnedCommunity);
+router.get('/me/owner', authMiddleware, communityController.getMyOwnedCommunity);
 
 //get my joined community
-router.get('/myJoined', authMiddleware, communityController.getMyJoinedCommunity);
+router.get('/me/member', authMiddleware, communityController.getMyJoinedCommunity);
 
 
 

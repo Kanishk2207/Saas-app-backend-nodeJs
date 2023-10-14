@@ -9,9 +9,9 @@ const memberController = require('../controllers/memberController');
 
 
 //create members
-router.post('/create',authMiddleware, memberController.createMember);
+router.post('',authMiddleware, memberController.createMember);
 
 //delete members
-router.delete('/delete', authMiddleware, memberController.deleteMember);
+router.delete('/:id', authMiddleware, memberController.deleteMember);
 
 module.exports = router;

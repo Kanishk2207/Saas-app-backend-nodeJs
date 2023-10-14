@@ -18,7 +18,7 @@ router.post('/signup', userController.signUpFunc);
 router.get('/signin', userController.signInFunc);
 
 //endpoint for getme
-router.get('/getme', authenticationMiddleware, userController.getMeFunc);
+router.get('/me', authenticationMiddleware, userController.getMeFunc);
 
 
 module.exports = router;
