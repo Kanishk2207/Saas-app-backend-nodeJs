@@ -3,14 +3,25 @@ const Member = require('../models/memberModel');
 const Community = require('../models/communityModels');
 const User = require("../models/users");
 const Role = require('../models/roles');
+const authMiddleware = require('../../authenticationMiddleware');
 const router = require('express').Router();
 
-router.post('/create', async (req,res)=>{
+
+//create members
+router.post('/create',authMiddleware, async (req,res)=>{
     try {
         
         const memberSnowflake = Snowflake.generate()
 
         const { community, user, role } = req.body;
+
+        // check if the user is admin
+        authUser = req.user.userId;
+        adminRole = '7118363940010907780'
+        const isAdmin = await Member.exists({community, authUser , adminRole })
+        if(!isAdmin){
+            return res.status(400).json({error: 'only admins can add members'})
+        }
 
         //check community existance
         const checkCommunity = await Community.findOne({communityId: community});
@@ -50,5 +61,10 @@ router.post('/create', async (req,res)=>{
         res.status(400).json({error: "internal server error"})
     }
 })
+
+//delete members
+router.delete('/delete', )
+
+
 
 module.exports = router;
