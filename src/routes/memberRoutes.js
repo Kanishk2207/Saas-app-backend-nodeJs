@@ -63,7 +63,33 @@ router.post('/create',authMiddleware, async (req,res)=>{
 })
 
 //delete members
-router.delete('/delete', )
+router.delete('/delete', authMiddleware, async (req, res)=>{
+    try {
+        
+        const { memberId } = req.body;
+        const member = Member.findOne({memberId: memberId});
+
+
+        const community = member.community;
+        const authUser = req.user.userId;
+        adminRole = '7118363940010907780'
+        const isAdmin = await Member.exists({community, authUser , adminRole })
+        if(!isAdmin){
+            return res.status(400).json({error: 'only admins can remove members'})
+        }
+
+
+        await Member.findOneAndDelete({memberId: memberId});
+
+        res.status(200).json('user deleted successfully');
+
+
+
+
+    } catch (error) {
+        
+    }
+})
 
 
 
