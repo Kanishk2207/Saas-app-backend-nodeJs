@@ -16,9 +16,10 @@ router.post('/create',authMiddleware, async (req,res)=>{
         const { community, user, role } = req.body;
 
         // check if the user is admin
-        authUser = req.user.userId;
-        adminRole = '7118363940010907780'
-        const isAdmin = await Member.exists({community, authUser , adminRole })
+        const authUser = req.user.userId;
+        const adminRole = await Role.find({roleName: 'community admin'});
+        const adminRoleId = adminRole.roleId;
+        const isAdmin = await Member.exists({community, authUser , adminRoleId });
         if(!isAdmin){
             return res.status(400).json({error: 'only admins can add members'})
         }

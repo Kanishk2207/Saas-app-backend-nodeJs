@@ -41,7 +41,6 @@ router.post('/create', async (req,res)=>{
 router.get('/getall', async (req,res)=>{
 
     try {
-        
         const allRoles = await Role.find();
     
         res.status(200).json(allRoles);
