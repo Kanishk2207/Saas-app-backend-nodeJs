@@ -116,7 +116,7 @@ router.get('/myJoined', authMiddleware, async (req, res) => {
     try {
 
         const userId = req.user.userId;
-        const roleId = Role.find({ roleName: 'commmunity member' });
+        const roleId = Role.find({ roleName: 'communitymember' });
 
 
         const allJoinedMembers = await Member.find({

@@ -72,7 +72,7 @@ router.delete('/delete', authMiddleware, async (req, res)=>{
 
         const community = member.community;
         const authUser = req.user.userId;
-        const adminRole = await Role.findOne({roleName: 'commmunity admin'});
+        const adminRole = await Role.findOne({roleName: 'communityadmin'});
         const adminRoleId = adminRole.roleId;
         const isAdmin = await Member.exists({community, authUser , adminRoleId });
         if(!isAdmin){
