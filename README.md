@@ -50,18 +50,17 @@ Describe your project
 
 ## :sparkles: Features ##
 
-:heavy_check_mark: Feature 1;\
-:heavy_check_mark: Feature 2;\
-:heavy_check_mark: Feature 3;
+:heavy_check_mark: user authorization and authentication;\
+:heavy_check_mark: app scalability;\
+:heavy_check_mark: code readbility;
 
 ## :rocket: Technologies ##
 
 The following tools were used in this project:
 
-- [Expo](https://expo.io/)
 - [Node.js](https://nodejs.org/en/)
-- [React](https://pt-br.reactjs.org/)
-- [React Native](https://reactnative.dev/)
+- [Express](https://expressjs.com/)
+- [MongoDB](https://www.mongodb.com/)
 - [TypeScript](https://www.typescriptlang.org/)
 
 ## :white_check_mark: Requirements ##
@@ -78,12 +77,12 @@ $ git clone https://github.com/{{YOUR_GITHUB_USERNAME}}/saas-app-backend
 $ cd saas-app-backend
 
 # Install dependencies
-$ yarn
+$ npm i
 
 # Run the project
-$ yarn start
+$ npm start
 
-# The server will initialize in the <http://localhost:3000>
+# The server will initialize in the <http://localhost:8080>
 ```
 
 ## :memo: License ##
